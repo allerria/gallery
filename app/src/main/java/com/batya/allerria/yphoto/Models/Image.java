@@ -1,4 +1,4 @@
-package com.batya.allerria.yphoto;
+package com.batya.allerria.yphoto.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
