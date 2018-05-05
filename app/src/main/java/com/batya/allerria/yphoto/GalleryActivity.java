@@ -77,8 +77,6 @@ public class GalleryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gallery);
         apiInterface = Api.getClient().create(ApiInterface.class);
         mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         rv = (RecyclerView) findViewById(R.id.gallery_recycler_view);
         rv.setHasFixedSize(false);
         lm = new GridLayoutManager(this, 3);
