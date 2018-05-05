@@ -5,7 +5,9 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GalleryActivity">
+    tools:context=".GalleryActivity"
+    android:descendantFocusability="blocksDescendants"
+    >
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -28,6 +30,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:descendantFocusability="blocksDescendants"/>
 
 </android.support.constraint.ConstraintLayout>

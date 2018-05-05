@@ -34,14 +34,17 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     }
 
     public GalleryAdapter(Context context) {
-        this.data = data;
         this.context = context;
     }
 
-    public void setData(List<Image> data) {
+    /*public void setData(List<Image> data) {
         this.data.clear();
         this.data.addAll(data);
+        notifyDataSetChanged();
+    }*/
 
+    public void addData(List<Image> data) {
+        this.data.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -61,7 +64,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-
         Image current = data.get(position);
         Glide.with(context)
                 .load(current.getPreviewURL())
@@ -71,7 +73,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        Log.d("TAG", String.valueOf(data.size()));
         return data.size();
     }
 }
