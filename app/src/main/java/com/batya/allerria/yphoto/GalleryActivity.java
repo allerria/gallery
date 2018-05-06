@@ -1,6 +1,7 @@
 package com.batya.allerria.yphoto;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.batya.allerria.yphoto.GalleryAdapter;
 import com.batya.allerria.yphoto.Models.Image;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -63,11 +65,14 @@ public class GalleryActivity extends AppCompatActivity {
         searchView = findViewById(R.id.search_view);
         searchView.setQueryHint("Искать...");
         searchView.onActionViewExpanded();
+        searchView.setIconified(false);
+        searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 q = query;
                 adapter.clearData();
+                searchView.clearFocus();
                 loadData();
                 return false;
             }
@@ -85,7 +90,13 @@ public class GalleryActivity extends AppCompatActivity {
         adapter = new GalleryAdapter(this);
         rv.setAdapter(adapter);
         rv.addOnScrollListener(recyclerViewOnScrollListener);
-        loadData();
+        if (savedInstanceState != null) {
+            Log.d("TAG", "trying to restore position " + savedInstanceState.getInt("position"));
+            adapter.addData(savedInstanceState.<Image>getParcelableArrayList("data"));
+            lm.scrollToPosition(savedInstanceState.getInt("position"));
+        } else {
+            loadData();
+        }
     }
 
     protected void loadData() {
@@ -114,4 +125,11 @@ public class GalleryActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("position", lm.findFirstVisibleItemPosition());
+        outState.putParcelableArrayList("data", new ArrayList<Parcelable>(adapter.getData()));
+    }
+
 }

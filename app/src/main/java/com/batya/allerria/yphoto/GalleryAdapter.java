@@ -57,6 +57,10 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         this.data.clear();
     }
 
+    public List<Image> getData() {
+        return this.data;
+    }
+
     @Override
     public GalleryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                         int viewType) {
