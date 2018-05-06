@@ -2,26 +2,18 @@ package com.batya.allerria.yphoto;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.batya.allerria.yphoto.API.Api;
 import com.batya.allerria.yphoto.API.ApiInterface;
 import com.batya.allerria.yphoto.Models.Gallery;
-import com.batya.allerria.yphoto.GalleryAdapter;
 import com.batya.allerria.yphoto.Models.Image;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +22,6 @@ import retrofit2.Response;
 public class GalleryActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
-    private TextView mTextMessage;
     private Gallery gallery = new Gallery();
     private RecyclerView rv;
     private GridLayoutManager lm;
@@ -106,10 +97,6 @@ public class GalleryActivity extends AppCompatActivity {
             public void onResponse(Call<Gallery> call, Response<Gallery> response) {
                 Log.d("TAG", response.code() + "");
                 if (response.code() == 200) {
-                    /*
-                    gallery.addImages(response.body().getImages());
-                    adapter.setData(gallery.getImages());
-                    */
                     adapter.addData(response.body().getImages());
                     adapter.notifyDataSetChanged();
                 }

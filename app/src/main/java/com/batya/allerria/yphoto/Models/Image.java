@@ -43,32 +43,12 @@ public class Image implements Parcelable {
         return largeImageURL;
     }
 
-    public void setLargeImageURL(String largeImageURL) {
-        this.largeImageURL = largeImageURL;
-    }
-
     public String getWebformatURL() {
         return webformatURL;
     }
 
-    public void setWebformatURL(String webformatURL) {
-        this.webformatURL = webformatURL;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     public String getPreviewURL() {
         return previewURL;
-    }
-
-    public void setPreviewURL(String previewURL) {
-        this.previewURL = previewURL;
     }
 
     @Override
