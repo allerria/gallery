@@ -5,6 +5,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
-    @GET("?key=8868841-cbc4d6256f90454a781a8d022&image_type=photo")
+    @GET("?key=8868841-cbc4d6256f90454a781a8d022&image_type=photo&per_page=39")
     Call<Gallery> getGallery(@Query("q") String q, @Query("page") Integer page);
 }

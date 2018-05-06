@@ -28,13 +28,12 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public ImageView imageView;
-        private ConstraintLayout parentLayout;
+        public SquareImageView squareImageView;
 
 
-        public ViewHolder(ImageView v) {
+        public ViewHolder(SquareImageView v) {
             super(v);
-            imageView = v;
+            squareImageView = v;
         }
 
     }
@@ -51,15 +50,23 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     public void addData(List<Image> data) {
         this.data.addAll(data);
-        notifyDataSetChanged();
+        Log.d("TAG", "addedData" + this.data.size());
+    }
+
+    public void clearData() {
+        this.data.clear();
     }
 
     @Override
     public GalleryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                         int viewType) {
         // create a new view
-        ImageView v = (ImageView) LayoutInflater.from(parent.getContext())
+        SquareImageView v = (SquareImageView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycle_item, parent, false);
+        v.setMinimumWidth(parent.getMeasuredWidth() / 3);
+        v.setMaxHeight(parent.getMeasuredWidth() / 3);
+        v.setMinimumHeight(parent.getMeasuredWidth() / 3);
+        v.setMaxWidth(parent.getMeasuredWidth() / 3);
         final ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -72,9 +79,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         Image current = data.get(position);
         Glide.with(context)
                 .load(current.getPreviewURL())
-                .into(holder.imageView);
+                .into(holder.squareImageView);
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.squareImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("TAG", "onClick: ");

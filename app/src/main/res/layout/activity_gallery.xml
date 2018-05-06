@@ -5,11 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
+    </android.support.v7.widget.SearchView>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gallery_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:descendantFocusability="blocksDescendants">
+        android:layout_weight="1">
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>
